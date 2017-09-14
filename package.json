@@ -1,6 +1,7 @@
 {
   "name": "get-project-version",
-  "version": "1.0.3",
+  "version": "1.0.4",
+  "custom":"7.7.7",
   "description": "This module will return the current project version string. The version string is made of the last git tag or package.json version (if no git tag exists) and the last commit hash.",
   "main": "lib/index.js",
   "bin": {

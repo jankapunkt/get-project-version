@@ -35,11 +35,13 @@ export default (opts) => {
   let tag;
   let resultVersion;
   let version;
+  let field;
 
   try {
     commit = options.commit || gitRevSync.short(options.cwd);
     tag = options.tag || gitRevSync.tag(options.cwd);
     resultVersion = regexVersion.exec(tag);
+    field = options.field || "version";
   } catch (error) {
     commit = 'no commit';
   }
@@ -52,7 +54,7 @@ export default (opts) => {
 
     version = `${major}.${minor}.${patch}`;
   } else {
-    version = getPackageJSON(options).version;
+    version = getPackageJSON(options)[field];
   }
 
   return options.template.replace(regexVarVersion, version)
