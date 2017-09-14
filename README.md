@@ -64,6 +64,27 @@ const version = getProjectVersion({
 console.log(version); // 1.0.0-081b152
 ```
 
+#### Example - Using Custom Fields
+
+There are cases where you'd define a different version string than your internal dev-version:
+
+```json
+{
+  "version": "17.2.54",
+  "custom": "1.7.2"
+}
+```
+
+```javascript
+import getProjectVersion from 'get-project-version';
+
+const version = getProjectVersion({
+  field: 'custom'
+});
+
+console.log(version); // Version: 1.7.2 Commit: 081b152
+```
+
 ## API
 
 #### `const version = getProjectVersion([options]);`
@@ -71,7 +92,7 @@ console.log(version); // 1.0.0-081b152
 Options you can pass `getProjectVersion`:
 - `template` - An optional String which templates the output of `getProjectVersion`. Version will be injected into `{{version}}` and a shortened commit hash will be injected into `{{commit}}`. eg. `'{{version}}-{{commit}}'`
 - `cwd` - An optional String. By default the current working directory will be `process.cwd()` you can modify this by passing a path. eg. `'pathToProjectDir/'`
-
+- `field` - An optional String for the field, that contains your version number. By default it is `version`.
 ## CLI
 
 #### CLI Example - Basic
